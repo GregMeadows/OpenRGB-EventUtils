@@ -2,8 +2,8 @@ import os
 import time
 from openrgb import OpenRGBClient
 from openrgb.utils import RGBColor
-from common import change_working_dir, load_previous_state, save_current_state
-from effects import effects_stop
+from helpers.common import change_working_dir, load_previous_state, save_current_state
+from helpers.effects import effects_stop
 
 # Configuration
 LOG_FILE = "data/notification"

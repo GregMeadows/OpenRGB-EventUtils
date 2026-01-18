@@ -1,8 +1,8 @@
 import argparse
 import os
 from openrgb import OpenRGBClient
-from common import LightingMode, change_working_dir, load_previous_state, save_current_state
-from effects import effects_stop
+from helpers.common import LightingMode, change_working_dir, load_previous_state, save_current_state
+from helpers.effects import effects_stop
 
 # Configuration
 LOG_FILE = "data/idle"
