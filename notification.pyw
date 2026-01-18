@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 import time
 from openrgb import OpenRGBClient
 from openrgb.utils import RGBColor
@@ -17,19 +17,19 @@ def on_cooldown() -> bool:
     Returns True if on cooldown, False otherwise.
     """
     current_time = time.time()
+    time_file = Path(TIME_FILE)
+    time_file.parent.mkdir(parents=True, exist_ok=True)
 
-    if os.path.exists(TIME_FILE):
-        with open(TIME_FILE, "r") as f:
-            try:
-                last_run = float(f.read())
-                if current_time - last_run < COOLDOWN:
-                    return True
-            except ValueError as e:
-                print(f"Error: {e}")
+    if time_file.exists():
+        try:
+            last_run = float(time_file.read_text())
+            if current_time - last_run < COOLDOWN:
+                return True
+        except ValueError as e:
+            print(f"Error: {e}")
     
     # Update the file with the new timestamp
-    with open(TIME_FILE, "w") as f:
-        f.write(str(current_time))
+    time_file.write_text(str(current_time))
 
     return False
 

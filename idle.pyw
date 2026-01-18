@@ -1,5 +1,5 @@
 import argparse
-import os
+from pathlib import Path
 from openrgb import OpenRGBClient
 from helpers.common import LightingMode, change_working_dir, load_previous_state, save_current_state
 from helpers.effects import effects_stop
@@ -12,25 +12,31 @@ def start_idle(client: OpenRGBClient):
     try:
         # Get current mode and save it
         mode = save_current_state(client, TEMP_PROFILE)
-        with open(MODE_FILE, 'w') as output:
-            output.write(str(mode.name))
+
+        # Update the file with the new mode
+        mode_file = Path(MODE_FILE)
+        mode_file.parent.mkdir(parents=True, exist_ok=True)
+        mode_file.write_text(str(mode.name))
+
         client.clear()
     except Exception as e:
         print(f"Error: {e}")
 
 def stop_idle(client: OpenRGBClient):
-    if os.path.exists(MODE_FILE):
-        with open(MODE_FILE, "r") as f:
+    mode_file = Path(MODE_FILE)
+    mode_file.parent.mkdir(parents=True, exist_ok=True)
+
+    if mode_file.exists():
+        try:
+            # Read the stored mode
+            stored_mode = mode_file.read_text().strip()
             try:
-                # Set the mode based on idle file
-                stored_mode = f.read().strip()
-                try:
-                    mode = LightingMode[stored_mode]
-                    load_previous_state(client, mode, TEMP_PROFILE)
-                except KeyError:
-                    print(f"Error: '{stored_mode}' is not a valid key in LightingMode.")
-            except ValueError as e:
-                print(f"Error: {e}")
+                mode = LightingMode[stored_mode]
+                load_previous_state(client, mode, TEMP_PROFILE)
+            except KeyError:
+                print(f"Error: '{stored_mode}' is not a valid key in LightingMode.")
+        except ValueError as e:
+            print(f"Error: {e}")
     else:
         print("Error: Idle does not exist.")
 
