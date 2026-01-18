@@ -30,7 +30,7 @@ def _effects_get_plugin(client: OpenRGBClient) -> Optional[EffectsPlugin]:
     Returns the effects plugin
     """
     if effects_plugin := next((p for p in client.plugins if p.name == "OpenRGB Effects Plugin"), None):
-        return EffectsPlugin(effects_plugin)
+        return effects_plugin if isinstance(effects_plugin, EffectsPlugin) else None
     return None
 
 def effects_in_use(client: OpenRGBClient) -> bool:

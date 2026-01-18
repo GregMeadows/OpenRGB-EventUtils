@@ -26,7 +26,7 @@ def on_cooldown() -> bool:
             if current_time - last_run < COOLDOWN:
                 return True
         except ValueError as e:
-            print(f"Error: {e}")
+            raise RuntimeError(f"Failed to parse cooldown time: {e}") from e
     
     # Update the file with the new timestamp
     time_file.write_text(str(current_time))
@@ -47,7 +47,7 @@ def flash():
             time.sleep(0.2)
         load_previous_state(client, mode, TEMP_PROFILE)
     except Exception as e:
-        print(f"Error: {e}")
+        raise RuntimeError(f"Failed to change lights: {e}") from e
 
 def main():
     change_working_dir()

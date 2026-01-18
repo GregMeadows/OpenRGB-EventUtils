@@ -14,13 +14,16 @@ def start_idle(client: OpenRGBClient):
         mode = save_current_state(client, TEMP_PROFILE)
 
         # Update the file with the new mode
-        mode_file = Path(MODE_FILE)
-        mode_file.parent.mkdir(parents=True, exist_ok=True)
-        mode_file.write_text(str(mode.name))
+        try:
+            mode_file = Path(MODE_FILE)
+            mode_file.parent.mkdir(parents=True, exist_ok=True)
+            mode_file.write_text(str(mode.name))
+        except PermissionError:
+            raise RuntimeError(f"Cannot write to {MODE_FILE} - permission denied")
 
         client.clear()
     except Exception as e:
-        print(f"Error: {e}")
+        raise RuntimeError(f"Failed to start idle: {e}") from e
 
 def stop_idle(client: OpenRGBClient):
     mode_file = Path(MODE_FILE)
@@ -34,11 +37,13 @@ def stop_idle(client: OpenRGBClient):
                 mode = LightingMode[stored_mode]
                 load_previous_state(client, mode, TEMP_PROFILE)
             except KeyError:
-                print(f"Error: '{stored_mode}' is not a valid key in LightingMode.")
+                print(f"Warning: '{stored_mode}' is not a valid key in LightingMode. Skipping state restoration.")
+                return
         except ValueError as e:
-            print(f"Error: {e}")
+            print(f"Warning: Could not read the stored mode from {MODE_FILE}: {e}")
+            return
     else:
-        print("Error: Idle does not exist.")
+        print("Warning: Idle file does not exist.")
 
 def main():
     # Arguments
