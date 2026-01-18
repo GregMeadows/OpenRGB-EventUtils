@@ -1,7 +1,6 @@
 import time
 from typing import List
 from openrgb import OpenRGBClient, utils
-from openrgb.plugins import ORGBPlugin
 from openrgb.plugins.effects import EffectsPlugin, Effect
 
 def effects_load(client: OpenRGBClient, profile_name: str):
@@ -42,7 +41,7 @@ def _effects_get_plugin(client: OpenRGBClient) -> EffectsPlugin:
     effects_plugin = next((p for p in client.plugins if p.name == "OpenRGB Effects Plugin"), None)
     if not effects_plugin:
         raise RuntimeError("OpenRGB Effects Plugin not found or not enabled.")
-    return effects_plugin
+    return EffectsPlugin(effects_plugin)
 
 def effects_in_use(client: OpenRGBClient):
     """
