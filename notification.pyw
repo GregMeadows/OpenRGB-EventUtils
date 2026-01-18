@@ -12,6 +12,10 @@ FLASH_COLOR_1 = RGBColor(255, 0, 0) # Red
 FLASH_COLOR_2 = RGBColor(0, 0, 0) # Black
 
 def on_cooldown() -> bool:
+    """
+    Checks if the notification is on cooldown.
+    Returns True if on cooldown, False otherwise.
+    """
     current_time = time.time()
 
     if os.path.exists(TIME_FILE):
@@ -30,6 +34,9 @@ def on_cooldown() -> bool:
     return False
 
 def flash():
+    """
+    Flashes the lights to notify the user.
+    """
     client = OpenRGBClient()
     try:
         mode = save_current_state(client, TEMP_PROFILE)
@@ -44,7 +51,6 @@ def flash():
 
 def main():
     change_working_dir()
-
     if not on_cooldown():
         flash()
 

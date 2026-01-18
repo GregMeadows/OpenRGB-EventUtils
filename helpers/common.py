@@ -11,9 +11,7 @@ class LightingMode(Enum):
 
 def save_current_state(client: OpenRGBClient, temp_profile: str) -> LightingMode:
     """
-    Will save the current state of lights.
-    If using effects plugin it will stop all effects.
-    An enum of the lighting mode is returned so we know what to resume when loading previous state.
+    Saves the current state of the lights and returns the lighting mode.
     """
     # check if currently using the effects plugin
     if effects_in_use(client):

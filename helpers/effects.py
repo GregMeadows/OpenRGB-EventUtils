@@ -35,8 +35,8 @@ def _effects_get_plugin(client: OpenRGBClient) -> Optional[EffectsPlugin]:
 
 def effects_in_use(client: OpenRGBClient) -> bool:
     """
-    Returns a boolean as to if there are currently any active effects.
-    Returns None if no effects were found.
+    Returns if any effects are enabled.
+    If the plugin is not found or there are no effects, returns false.
     """
     effects_plugin = _effects_get_plugin(client)
     # Only return true if there are effects and any are enabled
