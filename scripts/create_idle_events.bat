@@ -23,7 +23,7 @@ $Description = "Triggers idle.pyw when System enters Low Power Idle (Kernel-Powe
 
 # Get the directory this script is running in
 $ScriptDir = Split-Path -Parent $PWD.Path
-$ActionPath = Join-Path $ParentDir "idle.pyw"
+$ActionPath = Join-Path $ScriptDir "idle.pyw"
 
 # Check if the python file exists
 if (-not (Test-Path $ActionPath)) {
