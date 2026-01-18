@@ -1,6 +1,6 @@
 import time
 from typing import List, Optional
-from openrgb import OpenRGBClient, utils
+from openrgb import OpenRGBClient
 from openrgb.plugins.effects import EffectsPlugin, Effect
 
 def effects_stop(client: OpenRGBClient):

@@ -3,7 +3,7 @@ from enum import Enum
 import os
 from typing import Literal
 from openrgb import OpenRGBClient
-from effects import effects_in_use, effects_start, effects_stop
+from helpers.effects import effects_in_use, effects_start, effects_stop
 
 class LightingMode(Enum):
     BASIC = 0
