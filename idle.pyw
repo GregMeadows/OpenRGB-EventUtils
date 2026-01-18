@@ -5,35 +5,34 @@ from helpers.common import LightingMode, change_working_dir, load_previous_state
 from helpers.effects import effects_stop
 
 # Configuration
-LOG_FILE = "data/idle"
+MODE_FILE = "data/idle"
+TEMP_PROFILE = "idle"
 
 def start_idle(client: OpenRGBClient):
     try:
         # Get current mode and save it
-        mode = save_current_state(client, "idle")
-        with open(LOG_FILE, 'w') as output:
+        mode = save_current_state(client, TEMP_PROFILE)
+        with open(MODE_FILE, 'w') as output:
             output.write(str(mode.name))
-
-        # Stop all effects and turn off lights
-        effects_stop(client)
         client.clear()
-
     except Exception as e:
         print(f"Error: {e}")
 
 def stop_idle(client: OpenRGBClient):
-    if os.path.exists(LOG_FILE):
-        with open(LOG_FILE, "r") as f:
+    if os.path.exists(MODE_FILE):
+        with open(MODE_FILE, "r") as f:
             try:
                 # Set the mode based on idle file
                 stored_mode = f.read().strip()
                 try:
                     mode = LightingMode[stored_mode]
-                    load_previous_state(client, mode, "idle")
+                    load_previous_state(client, mode, TEMP_PROFILE)
                 except KeyError:
                     print(f"Error: '{stored_mode}' is not a valid key in LightingMode.")
             except ValueError as e:
                 print(f"Error: {e}")
+    else:
+        print("Error: Idle does not exist.")
 
 def main():
     # Arguments
