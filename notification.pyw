@@ -30,7 +30,7 @@ def check_cooldown():
 def flash():
     client = OpenRGBClient()
     try:
-        mode = save_current_state(client)
+        mode = save_current_state(client, "notification")
         effects_stop(client)
         client.set_color(RGBColor(255, 0, 0))
         time.sleep(0.2)
@@ -40,7 +40,7 @@ def flash():
         time.sleep(0.2)
         client.set_color(RGBColor(0, 0, 0))
         time.sleep(0.1)
-        load_previous_state(client, mode)
+        load_previous_state(client, mode, "notification")
     except Exception as e:
         print(f"Error: {e}")
 

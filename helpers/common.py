@@ -2,13 +2,13 @@
 from enum import Enum
 import os
 from openrgb import OpenRGBClient
-from effects import effects_in_use, effects_load, effects_start, effects_stop
+from effects import effects_in_use, effects_start, effects_stop
 
 class LightingMode(Enum):
     BASIC = 0
     EFFECTS = 1
 
-def save_current_state(client: OpenRGBClient, temp_profile: str = "tmp"):
+def save_current_state(client: OpenRGBClient, temp_profile: str):
     """
     Will save the current state of lights.
     If using effects plugin it will stop all effects.
@@ -23,7 +23,7 @@ def save_current_state(client: OpenRGBClient, temp_profile: str = "tmp"):
         client.save_profile(temp_profile)
         return LightingMode.BASIC
 
-def load_previous_state(client: OpenRGBClient, mode: LightingMode, temp_profile: str = "tmp"):
+def load_previous_state(client: OpenRGBClient, mode: LightingMode, temp_profile: str):
     """
     Loads the previous state of the lights based on the lighting mode.
     """
