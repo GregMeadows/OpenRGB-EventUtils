@@ -33,3 +33,10 @@ Run the setup script for the feature(s) you want.
 ### For flash on Windows notification
 - Run `scripts/create_notification_event.bat`.
 - You can also [create the Windows event manually](docs/notification) should you want to.
+
+## Troubleshooting
+Windows can be real funny about what events fire depending on version, updates, or how it's feeling that day.  
+So there is a chance that what works for one person, does not work for another.  
+
+- [Idle Troubleshooting](docs/idle#troubleshooting)
+- [Notification Troubleshooting](docs/notification#troubleshooting)
