@@ -5,6 +5,7 @@ from openrgb.utils import RGBColor
 from helpers.common import change_working_dir, load_previous_state, save_current_state
 
 # Configuration
+SERVER_PORT = 6742
 TIME_FILE = "data/notification"
 TEMP_PROFILE = "notification"
 COOLDOWN = 300  # 5 minutes in seconds
@@ -37,7 +38,7 @@ def flash():
     """
     Flashes the lights to notify the user.
     """
-    client = OpenRGBClient()
+    client = OpenRGBClient(port=SERVER_PORT)
     try:
         mode = save_current_state(client, TEMP_PROFILE)
         for i in range(2):

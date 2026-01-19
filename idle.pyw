@@ -5,6 +5,7 @@ from helpers.common import LightingMode, change_working_dir, load_previous_state
 from helpers.effects import effects_stop
 
 # Configuration
+SERVER_PORT = 6742
 MODE_FILE = "data/idle"
 TEMP_PROFILE = "idle"
 
@@ -53,7 +54,7 @@ def main():
 
     change_working_dir()
 
-    client = OpenRGBClient()
+    client = OpenRGBClient(port=SERVER_PORT)
 
     # Call method based on argument
     if args.action == "start":
