@@ -15,6 +15,7 @@ A collection of small Python scripts for OpenRGB that trigger based on Windows e
     - Download the ZIP via the <kbd>Code</kbd> button above, or clone the repo.
 2. Place the directory somewhere you are happy for it to live.
     - The Windows events will point to these files, so if they move, it will break.
+    - You will need read & write permission for the location without elevation.
     - You can re-run the setup scripts to fix the paths should you want to relocate the files.
 3. If you didn't already, install [OpenRGB-Python](https://github.com/jath03/openrgb-python)
     - Run `pip3 install openrgb-python` in the console.
