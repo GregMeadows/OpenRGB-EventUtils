@@ -50,6 +50,7 @@ Follow these steps to manually create the notification event in Windows Task Sch
 4. Click **OK**.
 
 <br />
+<br />
 
 # Troubleshooting
 
@@ -87,10 +88,10 @@ If the task runs manually but won't trigger automatically, the `EventID` might b
 1. Press `Win + X` and select **Event Viewer**.
 2. In the left sidebar, navigate to:
 **Applications and Services Logs** > **Microsoft** > **Windows** > **PushNotifications-Platform** > **Operational**.
-3. Easiest, is to wait for a notification, then refresh this list (`F5`).
-4. If there is nothing in the list, right-click the **Operational** log folder, and Select **Enable Log**.
+3. If there is nothing in the list, right-click the **Operational** log folder, and Select **Enable Log**.
+4. The easiest way to test this is to wait for a notification, then refresh this list (`F5`).
 
-Each notification will have several events attached to it, the descript should shed some light on what they are.
+Each notification will have several events attached to it, the description should shed some light on what they are.
 Ideally you want to find the event that states `Toast with notification tracking id xxxx is being delivered `.
 
 If the ID is different (e.g., `3051` or `3053`), go back to the [Triggers Tab step](#triggers-tab), and change the `EventID` in the XML to the new ID.
