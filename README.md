@@ -12,7 +12,7 @@ A collection of small Python scripts for OpenRGB that trigger based on Windows e
 
 ## Installation
 1. Download the files.
-    - Grab the latest release zip on the right, or clone this repo.
+    - Download the ZIP via the <kbd>Code</kbd> button above, or clone the repo.
 2. Place the directory somewhere you are happy for it to live.
     - The Windows events will point to these files, so if they move, it will break.
     - You can re-run the setup scripts to fix the paths should you want to relocate the files.
