@@ -28,15 +28,15 @@ Run the setup script for the feature(s) you want.
 
 ### For lights off when idling
   - Run `scripts/create_idle_events.bat`.
-  - You can also [create the Windows event manually](docs/idle) should you want to.
+  - You can also [create the Windows event manually](docs/idle.md) should you want to.
 
 ### For flash on Windows notification
 - Run `scripts/create_notification_event.bat`.
-- You can also [create the Windows event manually](docs/notification) should you want to.
+- You can also [create the Windows event manually](docs/notification.md) should you want to.
 
 ## Troubleshooting
 Windows can be real funny about what events fire depending on version, updates, or how it's feeling that day.  
 So there is a chance that what works for one person, does not work for another.  
 
-- [Idle Troubleshooting](docs/idle#troubleshooting)
-- [Notification Troubleshooting](docs/notification#troubleshooting)
+- [Idle Troubleshooting](docs/idle.md#troubleshooting)
+- [Notification Troubleshooting](docs/notification.md#troubleshooting)

@@ -50,7 +50,6 @@ Follow these steps to manually create the notification event in Windows Task Sch
 4. Click **OK**.
 
 <br />
-<br />
 
 # Troubleshooting
 

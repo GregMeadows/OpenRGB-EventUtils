@@ -105,7 +105,6 @@ Follow these steps to manually create the idle stop in Windows Task Scheduler.
 5. Click **OK**.
 
 <br />
-<br />
 
 # Troubleshooting
 
