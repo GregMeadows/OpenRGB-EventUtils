@@ -19,7 +19,7 @@ def save_current_state(client: OpenRGBClient, temp_profile: str) -> LightingMode
         return LightingMode.EFFECTS
     else:
         # Save a temp profile
-        client.save_profile(temp_profile)
+        client.save_profile("tmp-" + temp_profile)
         return LightingMode.BASIC
 
 def load_previous_state(client: OpenRGBClient, mode: LightingMode, temp_profile: str):
@@ -29,7 +29,7 @@ def load_previous_state(client: OpenRGBClient, mode: LightingMode, temp_profile:
     if mode == LightingMode.EFFECTS:
          effects_start(client)
     elif mode == LightingMode.BASIC:
-        client.load_profile(temp_profile)
+        client.load_profile("tmp-" + temp_profile)
 
 def change_working_dir():
     """
